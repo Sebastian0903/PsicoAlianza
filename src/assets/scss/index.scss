@@ -1,0 +1,92 @@
+@import './general.scss';
+
+
+// @import '../img/ico-escudo-reposado.png';
+
+:root{
+    --color-light: #124bad;
+    --color-semilight: #0e3c8a;
+    --color-primary: #0C3273;
+    --color-semidark: #0a285c;
+    --color-dark: #06193a;
+    --color-hover: #480C0C;
+    --color-danger: #CC0000;
+    --color-warning: #ffb900;
+    --color-success: #107c10;
+    --color-neutral-light-III:#ffffff;
+    --color-neutral-light-II:#f3f3f3;
+    --color-neutral-light-I:#eaeaea;
+    --color-neutral-base:#c8c8c8;
+    --color-neutral-dark-I:#999999;
+    --color-neutral-dark-II:#4b4b4b;
+    --color-neutral-dark-III:#1a1a1a;
+    --font-primary: 'Segoe UI';
+    --font-size-primary: 1.375rem;
+    --font-size-secondary: 1.125rem;
+    --font-size-tertiary: 1rem;
+    --font-size-quarternary: 0.875rem;
+    --font-size-pentanary: 0.75rem;
+}
+
+body{
+    margin: 0;
+    font-family: var(--font-primary);
+    background-size: cover;
+    background-attachment: fixed;
+    // background-image: var(--background-image);
+    padding: 0;
+}
+div#root{
+    height: auto;
+    min-height:100vh;
+    display: flex;  
+}
+
+button{
+    border: none;  
+}
+input{
+    min-height: 32px;
+}
+a{
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+
+
+.field-91:hover::before, .field-91:hover::after, .field-91::before, .field-91::after{
+    border-color: var(--color-primary);
+}
+.checkbox-107, .root-107:hover .ms-Checkbox-checkbox, .root-106:hover .ms-Checkbox-checkbox, .checkbox-82{
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar:hover {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    opacity: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: var(--color-semilight);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    width: 4px;
+    border-radius: 4px;
+    background-color: var(--color-semilight);
+}
