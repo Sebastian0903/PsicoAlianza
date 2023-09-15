@@ -1,5 +1,8 @@
 @import './general.scss';
-
+@import '../../components/containerLogin/containerBaseLogin.component.scss';
+@import '../../controls/inputFile/inputFile.component.scss';
+@import '../../components/panelFloat/panelFloat.scss';
+@import '../../components/DetailsList/detailsList.component.scss';
 
 // @import '../img/ico-escudo-reposado.png';
 
@@ -45,7 +48,7 @@ div#root{
 button{
     border: none;  
 }
-input{
+input:not(.no-min){
     min-height: 32px;
 }
 a{

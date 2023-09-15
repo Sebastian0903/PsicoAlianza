@@ -1,0 +1,53 @@
+.panel{
+    background: #3737ec;
+    width: fit-content;
+    position: fixed;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    z-index: 2;
+    .icon-waffle{
+        color: #f5f5f5;
+        font-size: 30px;
+    }
+    
+    .ms-Nav{
+        .ms-Nav-chevronButton{
+            color: #f5f5f5;
+        }
+        .ms-Button{
+            background-color: transparent;
+        }
+        .ms-Nav-linkText{
+            color: #f5f5f5;
+    
+            :hover{
+                background-color: #5959e9;
+            }
+        }
+        .ms-Nav-navItem{
+            margin-top: 15px;
+        }
+    }
+    .ms-OverflowSet{
+        button{
+            background: #3737ec;
+        }
+        i{
+            color: #f5f5f5;
+            font-size: 20px;
+        }
+        
+        :hover{
+            background-color: #5959e9 !important;
+            i{color: #f5f5f5;font-size: 20px;}
+        }
+        .ms-OverflowSet-item{
+            margin-top: 20px;
+        }
+    }
+}
+.ms-Nav-compositeLink:hover{
+    background-color: #5959e9 !important;
+}
