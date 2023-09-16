@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ccf46a86.css",
+    "main.js": "/static/js/main.c48917ea.js",
+    "static/js/787.8963effe.chunk.js": "/static/js/787.8963effe.chunk.js",
+    "static/media/fondo-gafas.jfif": "/static/media/fondo-gafas.a8f2b6a6f8e27200ff90.jfif",
+    "static/media/logo.webp": "/static/media/logo.63fea8b2d523454c59bb.webp",
+    "static/media/img-perfil.png": "/static/media/img-perfil.a29a7538e94339ec0e52.png",
+    "static/media/png-fondo.png": "/static/media/png-fondo.801afbd6192522288f68.png",
+    "index.html": "/index.html",
+    "main.ccf46a86.css.map": "/static/css/main.ccf46a86.css.map",
+    "main.c48917ea.js.map": "/static/js/main.c48917ea.js.map",
+    "787.8963effe.chunk.js.map": "/static/js/787.8963effe.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ccf46a86.css",
+    "static/js/main.c48917ea.js"
+  ]
+}
