@@ -19,7 +19,7 @@ const PanelFloat = (props) => {
                     key: 'Soporte BSR',
                     name: 'Home',
                     // url: `/${client}/administration/support`,
-                    onClick:()=>{props.onChange(`inbox`);}
+                    onClick:()=>{props.home(`inbox`);}
                     
                 },
                 {
@@ -30,14 +30,13 @@ const PanelFloat = (props) => {
                             key: 'commercialLicense',
                             name: 'Empleados',
                             // url: `/${client}/administration/commercial-license`
-                            onClick:()=>{navigate(`/empleados`);}
+                            onClick:()=>{props.empleado(true);}
                         },
                         {
                             key: 'userLicenses',
                             name: 'Cargos',
                             // url: `/${client}/administration/user-licences`
-                            onClick:()=>{props.onChange(`cargos`);}
-        
+                            onClick:()=>{props.cargo(`cargos`);}
                         }
                     ]
                 }

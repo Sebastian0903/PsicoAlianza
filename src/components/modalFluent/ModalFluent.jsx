@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import { Modal, IconButton } from '@fluentui/react'
+import { Modal, IconButton, FontIcon } from '@fluentui/react'
 import InputFileForm from '../../controls/inputFile/inputFile.component copy';
 import SelectFile from '../../controls/selectFile/selectFile.component';
 
-const ModalFluent = ({title, classTitle, onClose, openModal, form, revert, textAcept})=>{
+const ModalFluent = ({title, classTitle, onClose, openModal, form, revert, textAcept, classHeader, confirmDelete})=>{
   const [isModalOpen, setIsModalOpen] = useState(false)
   const hideModal = () => {
       setIsModalOpen(false);
@@ -50,6 +50,21 @@ const ModalFluent = ({title, classTitle, onClose, openModal, form, revert, textA
     )
   }
 
+  const deleteFuncion = () =>{
+    return(
+      <>
+      <div className="d--flex flex-fl c--flex-hc">
+      <FontIcon aria-label="ChevronLeftSmall"
+        className='txt--prymary mg20-h'
+        style={{fontSize:'40px', marginTop:'40px'}}
+        iconName={'Delete'}/>
+      <span style={{fontSize:'30px', marginBottom:'30px'}} className='mg20-h'>Borrar empleado</span>
+      <span style={{fontWeight:'600'}} className='mg20-h txt--secondary'>Esta seguro de borrar a Juan Fernando Rosero</span>
+      </div>
+      </>
+    )
+  }
+
   return (
     <>
       <Modal
@@ -58,7 +73,7 @@ const ModalFluent = ({title, classTitle, onClose, openModal, form, revert, textA
         onDismiss={hideModal}
         isBlocking={true}
       >
-        <div className={'modal-header'}>
+        {confirmDelete?'':<div className={`modal-header ${classHeader}`}>
           <span className={classTitle} id="id">{title}</span>
           <IconButton
             iconProps = {{iconName: 'ChromeClose'}}
@@ -66,9 +81,10 @@ const ModalFluent = ({title, classTitle, onClose, openModal, form, revert, textA
             onClick={()=>hideModal()}
             className='icon-modal-close'
           />
-        </div>
+        </div>}
         <div className="modal--body">
           {form && renderForm(form)}
+          {confirmDelete && deleteFuncion()}
         </div>
         <div className="modal-footer">
             <div className="w45-resp d--flex c--flex-wse">

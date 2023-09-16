@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DetailsList from '../components/DetailsList/detailsList.component'
 import { useBoolean } from "@fluentui/react-hooks";
 import { Checkbox, FontIcon } from '@fluentui/react';
 import DetailsListPSA from '../components/DetailsList/detailsList.component';
 import InputFile from '../controls/inputFile/inputFile.component'
+import ModalFluent from '../components/modalFluent/ModalFluent';
 
 const Empleados = () => {
   const [isLoadingData, {
@@ -12,12 +13,69 @@ const Empleados = () => {
   }] = useBoolean(false);
 
   const [itemsSelect, setItemsSelect] = useState([])
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [dataModal, setDataModal] = useState({})
   const [pagination, setPagination] = useState({
     currentPage: 1,
     pageSize: 10,
     totalItems: 10,
     totalPages: 5
   });
+
+  const [campForm, setCampForm] = useState([
+    {
+        label:'Nombres',
+        className:'no-min h-input',
+        type:'text',
+        style:'mrg-4-0',
+        placeholder:'Escribe el nombre de tu empleado'
+    },
+    {
+        label:'Apellidos',
+        className:'no-min h-input',
+        type:'text',
+        style:'mrg-4-0',
+        placeholder:'Escribe '
+    },
+    {
+        label:'Identificación',
+        className:'no-min h-input',
+        type:'text',
+        style:'mrg-4-0',
+        placeholder:'Escribe un número de identificación'
+    },
+    {
+        label:'Teléfono',
+        className:'no-min h-input',
+        type:'text',
+        style:'mrg-4-0',
+        placeholder:'Escribe un número de teléfono'
+    },
+    {
+        label:'Ciudad',
+        className:'no-min h-input',
+        type:'select',
+        options:[
+            {
+                text:'Selecciona una ciudad',
+                id:1
+            }
+        ],
+        placeholder:'Selecciona una ciudad'
+    },
+    {
+        label:'Departamento',
+        className:'no-min h-input',
+        type:'select',
+        options:[
+            {
+                text:'Selecciona un departamento',
+                id:2
+            }
+        ],
+        placeholder:'Selecciona un departamento'
+    }
+])
 
   const [filter, setFilter] = useState({
     pageSize: 5,
@@ -59,7 +117,7 @@ const Empleados = () => {
   }];
 
   const [columnTitles, setColumnTitles] = useState(COLUMN_TITLES)
-
+  const [numero, setNumero] = useState(0)
   const defaultRenderItemColumn = (item, index, column) => {
   
     const fieldContent = item[column.fieldName];
@@ -70,12 +128,30 @@ const Empleados = () => {
                 <FontIcon aria-label="ChevronLeftSmall"
                     className='txt--prymary c-pointer'
                     iconName={'Edit'}
-                    onClick={()=>{}}
+                    onClick={()=>{showModal(
+                      {
+                        title:"Editar empleado",
+                        classTitle:'clr--light-III txt-4',
+                        textAcept:"Guardar",
+                        classHeader:"bkgn--primary",
+                        form:campForm
+                      }
+                    )}}
                 />
                 <FontIcon aria-label="ChevronLeftSmall"
                     className='txt--prymary c-pointer'
                     iconName={'Delete'}
-                    onClick={()=>{}}
+                    onClick={()=>{showModal(
+                      {
+                        title:"Editar empleado",
+                        classTitle:'clr--light-III txt-4',
+                        textAcept:"Aceptar",
+                        classHeader:"bkgn--primary",
+                        form:[],
+                        confirmDelete:true,
+                        revert:true
+                      }
+                    )}}
                 />
               </div>
             );
@@ -83,6 +159,23 @@ const Empleados = () => {
             return <span>{fieldContent}</span>;
     }
 }
+const hideModal = ()=>{
+  setIsOpenModal(false)
+}
+const showModal = (data)=>{
+  setDataModal(data)
+  setIsOpenModal(true)
+}
+const renderModal = (page) =>{
+  return(
+      <ModalFluent
+          onClose={hideModal} 
+          openModal={isOpenModal}
+          {...page}
+      />
+  )
+}
+
   const registros = [
     {
       departamento: 'Caldas',
@@ -134,8 +227,18 @@ const Empleados = () => {
     setItemsSelect(e)
   }
   return (
+    <>
+    {isOpenModal && 
+      renderModal(dataModal)
+    }
     <div className='w8 components-list pg2-wrem'>
+      <div className="d--flex c--flex-hc">
+      <FontIcon 
+        aria-label="ChevronLeftSmall"
+        className='txt--tertiary c-pointer mrg-r10 clr--primary'
+        iconName={'ChromeBack'}/>
       <h1 style={{fontFamily:'sans-serif'}}>Empleados</h1>
+      </div>
         <DetailsListPSA
         enableShimmer={isLoadingData}
         listKey="listSelect"
@@ -147,8 +250,11 @@ const Empleados = () => {
         columnTitles={columnTitles}
         onSelect={getDataItem}
         pagination={pagination}
+        formConstants={campForm}
+        iconBoton={'AddFriend'}
         />
     </div>
+    </>
   )
 }
 

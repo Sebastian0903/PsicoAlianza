@@ -2,7 +2,7 @@ import React, {useEffect, useState, useMemo} from 'react';
 import { useId, useBoolean } from '@fluentui/react-hooks';
 import {buildColumns, DetailsHeader, DetailsList} from '@fluentui/react/lib/DetailsList';
 import { ShimmeredDetailsList } from '@fluentui/react/lib/ShimmeredDetailsList';
-import { ActionButton, FontIcon, MarqueeSelection, Modal } from '@fluentui/react';
+import { ActionButton, FontIcon, FontWeights, IconButton, MarqueeSelection, Modal } from '@fluentui/react';
 import { Selection } from '@fluentui/react/lib/Selection';
 import ModalFluent from '../modalFluent/ModalFluent';
 
@@ -16,6 +16,7 @@ const DetailsListPSA = ({
     items,
     columnTitles,
     selectionMode = 0,
+    iconBoton,
     compact,
     renderItemColumn = _defaultRenderItemColumn,
     enableShimmer,
@@ -24,8 +25,7 @@ const DetailsListPSA = ({
     onPageChange,
     layoutMode,
     itemsSelect,
-    viewport,
-    detailsHeaderProps,
+    formConstants,
     pagination = {
         currentPage: -1,
         pageSize: -1,
@@ -35,61 +35,11 @@ const DetailsListPSA = ({
  }) => {
     const [sortedItems, setSortedItems] = useState([]);
     const [columns, setColumns] = useState()
-    const [isModalOpen, { setTrue: showModal, setFalse: hideModal }] = useBoolean(false);
-    const [campForm, setCampForm] = useState([
-        {
-            label:'Nombres',
-            className:'no-min h-input',
-            type:'text',
-            style:'mrg-4-0',
-            placeholder:'Escribe el nombre de tu empleado'
-        },
-        {
-            label:'Apellidos',
-            className:'no-min h-input',
-            type:'text',
-            style:'mrg-4-0',
-            placeholder:'Escribe '
-        },
-        {
-            label:'Identificación',
-            className:'no-min h-input',
-            type:'text',
-            style:'mrg-4-0',
-            placeholder:'Escribe un número de identificación'
-        },
-        {
-            label:'Teléfono',
-            className:'no-min h-input',
-            type:'text',
-            style:'mrg-4-0',
-            placeholder:'Escribe un número de teléfono'
-        },
-        {
-            label:'Ciudad',
-            className:'no-min h-input',
-            type:'select',
-            options:[
-                {
-                    text:'Selecciona una ciudad',
-                    id:1
-                }
-            ],
-            placeholder:'Selecciona una ciudad'
-        },
-        {
-            label:'Departamento',
-            className:'no-min h-input',
-            type:'select',
-            options:[
-                {
-                    text:'Selecciona un departamento',
-                    id:2
-                }
-            ],
-            placeholder:'Selecciona un departamento'
-        }
-    ])
+    // const [isModalOpen, { setTrue: showModal, setFalse: hideModal }] = useBoolean(false);
+    const [numeroBot, setNumeroBot] = useState(0)
+    const [isOpenModal, setIsOpenModal] = useState(false)
+    const [dataModal, setDataModal] = useState({})
+    const [campForm, setCampForm] = useState(formConstants)
 
     useEffect(() => {
         setColumns(_buildColumns(columnTitles));
@@ -144,6 +94,16 @@ const DetailsListPSA = ({
 
     const _handleChangePage = (nextPage) => (onPageChange && pagination) && onPageChange(nextPage);
 
+    const renderModal = (page) =>{
+        return(
+            <ModalFluent 
+                onClose={title} 
+                openModal={isOpenModal}
+                {...page}
+            />
+        )
+    }
+
     const _paginationRow = () => {
         const {
             currentPage,
@@ -157,18 +117,17 @@ const DetailsListPSA = ({
             <>
                 <div className="details-list-pagination">
                     <div className="details-list-pagination__subitem">
-                        <p>{firstRegister} - {lastRegister} de {totalItems}</p>
+                        {/* <p>{firstRegister} - {lastRegister} de {totalItems}</p> */}
                     </div>
                     <div className="details-list-pagination__subitem">
                         <ul>
                             <li>
-                                <button
-                                    className="details-list-pagination__subitem--arrow"
-                                    disabled={currentPage === 1}
-                                    type="button"
-                                    onClick={ _ => _handleChangePage(currentPage - 1)}>
-                                    &#x3c;
-                                </button>
+                                <IconButton 
+                                    iconProps={{ iconName: 'ChromeBack', className:'clr--primary txt--tertiary act', style:{fontWeight:'700'}}} 
+                                    onClick={ _ => {_handleChangePage(currentPage - 1);setNumeroBot(current=>current-1)}} 
+                                    aria-label="Emoji" 
+                                    disabled={numeroBot === 1}
+                                />
                             </li>
                             <li className="details-list-pagination__pages">
                                 <ul>
@@ -176,12 +135,12 @@ const DetailsListPSA = ({
                                         [...Array(totalPages).keys()].map(key => {
                                             const page = key + 1;
                                             return (
-                                                <li className={`${page.toString().length>2?'max':'min'}`} id={page} key={page}>
+                                                <li className={`${page.toString().length>2?'max':'min'} hover-select ${page === numeroBot? 'details-list-selected':''}`} id={page} key={page}>
                                                     <button
-                                                        className={`${page === currentPage && 'details-list-pagination__pages--selected'}`}
+                                                        className={``}
                                                         data-title={page}
                                                         type="button"
-                                                        onClick={ _ => _handleChangePage(page)}
+                                                        onClick={ _ => {_handleChangePage(page);setNumeroBot(page);}}
                                                     >{page}</button>
                                                 </li>
                                             )
@@ -190,13 +149,12 @@ const DetailsListPSA = ({
                                 </ul>
                             </li>
                             <li>
-                                <button
-                                    className="details-list-pagination__subitem--arrow"
-                                    disabled={currentPage === totalPages}
-                                    type="button"
-                                    onClick={ _ => _handleChangePage(currentPage + 1)}>
-                                    &#x3e;
-                                </button>
+                                <IconButton 
+                                    iconProps={{ iconName: 'ChromeBackMirrored', className:'clr--primary txt--tertiary act', style:{fontWeight:'700'}}} 
+                                    onClick={ _ => {_handleChangePage(currentPage + 1);setNumeroBot(current=>current+1)}} 
+                                    aria-label="Emoji" 
+                                    disabled={numeroBot === totalPages}
+                                />
                             </li>
                         </ul>
                     </div>
@@ -219,32 +177,53 @@ const DetailsListPSA = ({
     }
     const titleId = useId('title');
     const title = ()=>{
-        hideModal()
+        setIsOpenModal(false)
+    }
+    const showModal = (data)=>{
+        setDataModal(data)
+        setIsOpenModal(true)
     }
     return (
         <>
-        {isModalOpen && 
-            <ModalFluent 
-                onClose={title} 
-                openModal={isModalOpen}
-                title="Nuevo empleado"
-                classTitle='clr--dark-I txt-4'
-                textAcept="Guardar"
-                form={campForm}
-            />
+        {isOpenModal && 
+            renderModal(dataModal)
         }
         <div className="d--flex flex-fl w10-table">
         <div className="d--flex c--flex-wsb c--flex-hc pdg-1">
                 <div className="font-opt pdg-1-h">
-                    <ActionButton className='button-trans mrg-r mrg-b-0' onClick={showModal} iconProps={{ iconName: 'Delete' }}>
+                    <ActionButton className='button-trans mrg-r mrg-b-0' 
+                    onClick={()=>{showModal(
+                      {
+                        title:"Editar empleado",
+                        classTitle:'clr--light-III txt-4',
+                        textAcept:"Aceptar",
+                        classHeader:"bkgn--primary",
+                        form:[],
+                        confirmDelete:true,
+                        revert:true
+                      }
+                    )}} 
+                    iconProps={{ iconName: 'Delete' }}>
                         Borrar seleccción
                     </ActionButton>
-                    <ActionButton className='button-trans mrg-b-0' onClick={showModal} iconProps={{ iconName: 'DownloadDocument' }}>
-                        Borrar seleccción
+                    <ActionButton className='button-trans mrg-b-0' onClick={()=>{}} iconProps={{ iconName: 'DownloadDocument' }}>
+                        Descargar archivos
                     </ActionButton>
                 </div>
             <div className="add-button pdg-1">
-            <ActionButton className='' onClick={showModal} iconProps={{ iconName: 'AddFriend' }}>
+            <ActionButton 
+                className='' 
+                onClick={()=>showModal(
+                    {
+                        title:"Nuevo empleado",
+                        classTitle:'clr--dark-I txt-4',
+                        textAcept:"Guardar",
+                        classHeader:"bkgn--light-II",
+                        form:campForm
+                    }
+                )} 
+                iconProps={{ iconName: iconBoton }}
+            >
             Agregar
             </ActionButton>
             </div>
