@@ -16,7 +16,7 @@ const Empleados = () => {
     currentPage: 1,
     pageSize: 10,
     totalItems: 10,
-    totalPages: 2
+    totalPages: 5
   });
 
   const [filter, setFilter] = useState({
@@ -25,36 +25,30 @@ const Empleados = () => {
     idDomain: ""
   });
 
-  const prueba = () =>{
-    return(
-<InputFile label='fgfgfg' />
-    )
-  }
-
   const COLUMN_TITLES = [{
     name: {
-      name: <InputFile className="no-min form-input" label='Nombre' /> ,
+      name: <InputFile onChange={()=>{}} className="no-min form-input" label='Nombre' /> ,
       maxWidth: 130
     },
     identity: {
-      name:<InputFile className="no-min form-input" label="Identificación" />,
+      name:<InputFile onChange={()=>{}} className="no-min form-input" label="Identificación" />,
       maxWidth: 110,
       isMultiline: true
     },
     direction:{
-      name: <InputFile className="no-min form-input" label="Dirección" />,
+      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Dirección" />,
       maxWidth: 140
     },
     telefono:{
-      name: <InputFile className="no-min form-input" label="Teléfono" />,
+      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Teléfono" />,
       maxWidth: 120
     },
     ciudad:{
-      name: <InputFile className="no-min form-input" label="Ciudad" />,
+      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Ciudad" />,
       maxWidth: 100
     },
     departamento:{
-      name: <InputFile className="no-min form-input" label="Departamento" />,
+      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Departamento" />,
       maxWidth: 130
     },
     actions: {
@@ -94,28 +88,54 @@ const Empleados = () => {
       departamento: 'Caldas',
       ciudad: 'Manizales',
       cargo: 'Director',
-      direction: 'AV 777 Sur',
-      identity: '123456789',
-      telefono: '9934934934',
-      name: 'Elisa',
+      direction: 'Cra 23 #7-29 Provenza',
+      identity: '10184478545',
+      telefono: '3128293847',
+      name: 'Juanita Gonzáles Uribe',
     },
     {
       departamento: 'Caldas',
       ciudad: 'Manizales',
-      cargo: 'Supervisor',
-      direction: 'AV 777 Sur',
-      identity: '987654321',
-      telefono: '9934934934',
-      name: 'Carlos',
+      cargo: 'Director',
+      direction: 'Cra 23 #7-29 Provenza',
+      identity: '10184478545',
+      telefono: '3128293847',
+      name: 'Juanita Gonzáles Uribe',
     },
+    {
+      departamento: 'Caldas',
+      ciudad: 'Manizales',
+      cargo: 'Director',
+      direction: 'Cra 23 #7-29 Provenza',
+      identity: '10184478545',
+      telefono: '3128293847',
+      name: 'Juanita Gonzáles Uribe',
+    },
+    {
+      departamento: 'Caldas',
+      ciudad: 'Manizales',
+      cargo: 'Director',
+      direction: 'Cra 23 #7-29 Provenza',
+      identity: '10184478545',
+      telefono: '3128293847',
+      name: 'Juanita Gonzáles Uribe',
+    },
+    {
+      departamento: 'Caldas',
+      ciudad: 'Manizales',
+      cargo: 'Director',
+      direction: 'Cra 23 #7-29 Provenza',
+      identity: '10184478545',
+      telefono: '3128293847',
+      name: 'Juanita Gonzáles Uribe',
+    }
   ]
   const getDataItem = (e) =>{
-    console.log(e)
     setItemsSelect(e)
   }
   return (
     <div className='w8 components-list pg2-wrem'>
-      <h1>Empleados</h1>
+      <h1 style={{fontFamily:'sans-serif'}}>Empleados</h1>
         <DetailsListPSA
         enableShimmer={isLoadingData}
         listKey="listSelect"

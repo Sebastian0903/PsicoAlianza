@@ -90,6 +90,9 @@
 }
 
 .pdg-1{padding: 10px;}
+.pdg-1-h{padding: 10px 0px;}
+.mrg-r{margin-right: 20px;}
+.mrg-b-0{margin-bottom: 0px; font-weight: 600;}
 
 .div-item{
  height: 30px;
@@ -121,6 +124,15 @@
     height: 27px;
     i{font-size: 15px;}
     span{font-size: 12px;color: #3737ec;font-weight: 600;}
+    &:hover{
+      background: #f2f2ff;
+    }
+  }
+}
+.font-opt{
+  .ms-Button{
+    border-radius: 20px;
+    height: 27px;
   }
 }
 

@@ -141,11 +141,13 @@
 .txt--tertiary{font-size: var(--font-size-tertiary);}
 .txt--quarternary{font-size: var(--font-size-quarternary);}
 .txt--pentanary{font-size: var(--font-size-pentanary);}
+.txt-weight{font-weight: bold;}
+.txt-4{font-weight: 400;}
 
 
 
 .button--default{
-    min-width: 120px;
+    min-width: 90px;
     min-height: 32px;
     margin-bottom: 5px;
     border: none;
@@ -226,16 +228,34 @@
     }
 }
 .button--default--none{
-    min-width: 120px;
+    min-width: 90px;
     min-height: 32px;
     margin-bottom: 5px;
     border: none;
     color: var(--color-neutral-light-III);
     transition: all 0.3s;
     cursor: default;
+    border-radius: 20px;
     &:hover{
         transition: all 0.3s;
         border: none;
+    }
+}
+.button-trans{
+    min-width: 90px;
+    min-height: 32px;
+    margin-bottom: 5px;
+    border: none;
+    color: var(--color-primary);
+    transition: all 0.3s;
+    cursor: default;
+    border-radius: 20px;
+    background: transparent;
+    cursor: pointer;
+    &:hover{
+        transition: all 0.3s;
+        border: none;
+        background: #EBEBEB;
     }
 }
 .button--disable{
@@ -249,22 +269,24 @@
     }
 }
 .button--primary{
-    background-color: var(--color-semidark);
+    background-color: var(--color-primary);
+    transition: all 0.3s;
+    border-radius: 20px;
+    &:hover{
+        cursor: pointer;
+        transition: all 0.3s;
+        background-color: var(--color-semilight);
+    }
+}
+.button--second{
+    color: var(--color-neutral-dark-I);
+    background-color: var(--color-neutral-light-I);
     transition: all 0.3s;
     &:hover{
         cursor: pointer;
         transition: all 0.3s;
-        background-color: var(--color-primary);
-    }
-}
-.button--second{
-    color: var(--color-semidark);
-    background-color: var(--color-neutral-light-I);
-    transition: all 0.3s;
-    &:hover{
-        transition: all 0.3s;
-        color: var(--color-primary);
-        background-color: var(--color-neutral-light-II);
+        color: var(--color-neutral-light-III);
+        background-color: var(--color-semilight);
     }
 }
 .button--success{

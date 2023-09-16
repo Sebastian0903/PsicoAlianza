@@ -1,9 +1,10 @@
 import React, {useEffect, useState, useMemo} from 'react';
-
+import { useId, useBoolean } from '@fluentui/react-hooks';
 import {buildColumns, DetailsHeader, DetailsList} from '@fluentui/react/lib/DetailsList';
 import { ShimmeredDetailsList } from '@fluentui/react/lib/ShimmeredDetailsList';
-import { ActionButton, FontIcon, MarqueeSelection } from '@fluentui/react';
+import { ActionButton, FontIcon, MarqueeSelection, Modal } from '@fluentui/react';
 import { Selection } from '@fluentui/react/lib/Selection';
+import ModalFluent from '../modalFluent/ModalFluent';
 
 
 const _defaultRenderItemColumn = (item, index, column) => {
@@ -34,6 +35,61 @@ const DetailsListPSA = ({
  }) => {
     const [sortedItems, setSortedItems] = useState([]);
     const [columns, setColumns] = useState()
+    const [isModalOpen, { setTrue: showModal, setFalse: hideModal }] = useBoolean(false);
+    const [campForm, setCampForm] = useState([
+        {
+            label:'Nombres',
+            className:'no-min h-input',
+            type:'text',
+            style:'mrg-4-0',
+            placeholder:'Escribe el nombre de tu empleado'
+        },
+        {
+            label:'Apellidos',
+            className:'no-min h-input',
+            type:'text',
+            style:'mrg-4-0',
+            placeholder:'Escribe '
+        },
+        {
+            label:'Identificación',
+            className:'no-min h-input',
+            type:'text',
+            style:'mrg-4-0',
+            placeholder:'Escribe un número de identificación'
+        },
+        {
+            label:'Teléfono',
+            className:'no-min h-input',
+            type:'text',
+            style:'mrg-4-0',
+            placeholder:'Escribe un número de teléfono'
+        },
+        {
+            label:'Ciudad',
+            className:'no-min h-input',
+            type:'select',
+            options:[
+                {
+                    text:'Selecciona una ciudad',
+                    id:1
+                }
+            ],
+            placeholder:'Selecciona una ciudad'
+        },
+        {
+            label:'Departamento',
+            className:'no-min h-input',
+            type:'select',
+            options:[
+                {
+                    text:'Selecciona un departamento',
+                    id:2
+                }
+            ],
+            placeholder:'Selecciona un departamento'
+        }
+    ])
 
     useEffect(() => {
         setColumns(_buildColumns(columnTitles));
@@ -77,6 +133,7 @@ const DetailsListPSA = ({
         );
     }
 
+    
     const onRenderDetailsHeader = (props, defaultRender) => {
         return (
           <div style={{ height: "50px", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -160,30 +217,34 @@ const DetailsListPSA = ({
             </>
         );
     }
+    const titleId = useId('title');
+    const title = ()=>{
+        hideModal()
+    }
     return (
         <>
+        {isModalOpen && 
+            <ModalFluent 
+                onClose={title} 
+                openModal={isModalOpen}
+                title="Nuevo empleado"
+                classTitle='clr--dark-I txt-4'
+                textAcept="Guardar"
+                form={campForm}
+            />
+        }
         <div className="d--flex flex-fl w10-table">
         <div className="d--flex c--flex-wsb c--flex-hc pdg-1">
-                <div className="">
-                <span className='pdg-1'>
-                <FontIcon aria-label="ChevronLeftSmall"
-                    className='mg20-h icon-waffle c-pointer'
-                    iconName={'Delete'}
-                    onClick={()=>{}}
-                />
-                    Borrar seleccción
-                </span>
-                <span className='pdg-1'>
-                <FontIcon aria-label="ChevronLeftSmall"
-                    className='mg20-h icon-waffle c-pointer'
-                    iconName={'DownloadDocument'}
-                    onClick={()=>{}}
-                />
-                    Descargar datos
-                </span>
+                <div className="font-opt pdg-1-h">
+                    <ActionButton className='button-trans mrg-r mrg-b-0' onClick={showModal} iconProps={{ iconName: 'Delete' }}>
+                        Borrar seleccción
+                    </ActionButton>
+                    <ActionButton className='button-trans mrg-b-0' onClick={showModal} iconProps={{ iconName: 'DownloadDocument' }}>
+                        Borrar seleccción
+                    </ActionButton>
                 </div>
             <div className="add-button pdg-1">
-            <ActionButton className='' iconProps={{ iconName: 'AddFriend' }} allowDisabledFocus>
+            <ActionButton className='' onClick={showModal} iconProps={{ iconName: 'AddFriend' }}>
             Agregar
             </ActionButton>
             </div>

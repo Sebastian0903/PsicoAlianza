@@ -53,6 +53,8 @@ const Inbox = () => {
       
   return (
     <>
+      <div id="modal"></div>
+
     <div className="container-inbox w10">
         <div className="header-list w10">
             <img src={logo} alt="" className='mg10-w logo-header'/>
