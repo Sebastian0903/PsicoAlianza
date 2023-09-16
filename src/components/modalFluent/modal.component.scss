@@ -17,7 +17,7 @@
 .w4-resp{width: 40%;}
 .h-input{height: 30px !important;}
 .ms-Dialog-main{
-    min-width: 600px;
+    // min-width: 600px;
     border-radius: 6px;
 }
 .modal-header{
@@ -79,7 +79,7 @@
     padding-top:70px;
 }
 
-@media only screen and (max-width : 900px) {
+@media only screen and (max-width : 700px) {
     .modal--body{
         min-width: auto;
     }
@@ -88,5 +88,6 @@
     }
     .w45-resp{
         width: 100%;
+        flex-flow: column;
     }
 }

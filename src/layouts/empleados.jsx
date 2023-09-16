@@ -85,34 +85,48 @@ const Empleados = () => {
 
   const COLUMN_TITLES = [{
     name: {
-      name: <InputFile onChange={()=>{}} className="no-min form-input" label='Nombre' /> ,
-      maxWidth: 130
+      name: <InputFile onChange={()=>{}} className="no-min form-input" label='Nombre' iconBo="search"/> ,
+      maxWidth: 130,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     identity: {
-      name:<InputFile onChange={()=>{}} className="no-min form-input" label="Identificación" />,
+      name:<InputFile onChange={()=>{}} className="no-min form-input" label="Identificación" iconBo="search"/>,
       maxWidth: 110,
-      isMultiline: true
+      isMultiline: true,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     direction:{
-      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Dirección" />,
-      maxWidth: 140
+      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Dirección" iconBo="search"/>,
+      maxWidth: 140,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     telefono:{
-      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Teléfono" />,
-      maxWidth: 120
+      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Teléfono" iconBo="search"/>,
+      maxWidth: 120,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     ciudad:{
-      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Ciudad" />,
-      maxWidth: 100
+      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Ciudad" iconBo="search"/>,
+      maxWidth: 100,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     departamento:{
-      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Departamento" />,
-      maxWidth: 130
+      name: <InputFile onChange={()=>{}} className="no-min form-input" label="Departamento" iconBo="search"/>,
+      maxWidth: 130,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     actions: {
       name: "Acciones",
       maxWidth: 60,
-      className:'centro'
+      className:'centro',
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     }
   }];
 

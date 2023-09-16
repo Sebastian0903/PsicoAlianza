@@ -26,7 +26,7 @@ const ModalFluent = ({title, classTitle, onClose, openModal, form, revert, textA
           switch (lbl.type) {
             case 'text':
               return(
-                <div className="w45">
+                <div className="w45-resp">
                 <InputFileForm onChange={()=>{}} placeholder={lbl.placeholder} label={lbl.label} className={lbl.className} style={lbl.style}/>
                 </div>
               )
@@ -34,7 +34,7 @@ const ModalFluent = ({title, classTitle, onClose, openModal, form, revert, textA
 
             case 'select':
               return(
-                <div className="w45">
+                <div className="w45-resp">
                 <SelectFile placeholder={lbl.placeholder} options={lbl.options} label={lbl.label} className={lbl.className} style={lbl.style}/>
                 </div>
               )
@@ -59,7 +59,7 @@ const ModalFluent = ({title, classTitle, onClose, openModal, form, revert, textA
         style={{fontSize:'40px', marginTop:'40px'}}
         iconName={'Delete'}/>
       <span style={{fontSize:'30px', marginBottom:'30px'}} className='mg20-h'>Borrar empleado</span>
-      <span style={{fontWeight:'600'}} className='mg20-h txt--secondary'>Esta seguro de borrar a Juan Fernando Rosero</span>
+      <span style={{fontWeight:'600'}} className='mg20-h txt--secondary txt-center'>Esta seguro de borrar a Juan Fernando Rosero</span>
       </div>
       </>
     )

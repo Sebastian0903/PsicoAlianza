@@ -80,33 +80,47 @@ const Cargos = () => {
   const COLUMN_TITLES = [{
     name: {
       name: <InputFile onChange={()=>{}} className="no-min form-input" label='Nombre' /> ,
-      maxWidth: 130
+      maxWidth: 130,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     identity: {
       name:<InputFile onChange={()=>{}} className="no-min form-input" label="Identificación" />,
       maxWidth: 110,
-      isMultiline: true
+      isMultiline: true,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     area:{
       name: <InputFile onChange={()=>{}} className="no-min form-input" label="Área" />,
-      maxWidth: 140
+      maxWidth: 140,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     cargo:{
       name: <InputFile onChange={()=>{}} className="no-min form-input" label="Cargo" />,
-      maxWidth: 120
+      maxWidth: 120,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     rol:{
       name: <InputFile onChange={()=>{}} className="no-min form-input" label="Rol" />,
-      maxWidth: 100
+      maxWidth: 100,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     jefe:{
       name: <InputFile onChange={()=>{}} className="no-min form-input" label="Jefe" />,
-      maxWidth: 130
+      maxWidth: 130,
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     },
     actions: {
       name: "Acciones",
       maxWidth: 60,
-      className:'centro'
+      className:'centro',
+      isResizable: true, // Hace que la columna sea redimensionable
+      minWidth: 100,  
     }
   }];
 

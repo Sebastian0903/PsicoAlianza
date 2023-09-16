@@ -37,6 +37,7 @@ const InputFile = (props) => {
             {props.label ? <Label>{props.label ? <div style={{position: "relative"}}> <span>{props.label}</span>{props.isRequired || props.required ? <FontIcon aria-label="requerido" iconName="SkypeCircleCheck" /> : ''} </div> : ""}</Label> : undefined}
             </div>
             {props.type != 'password' ?
+            <div className="inputFielt--container-input">
                 <input
                     name={props.name}
                     type={props.type}
@@ -48,6 +49,14 @@ const InputFile = (props) => {
                     readOnly={props.keyboard ? true : undefined}
                     onChange={(e) =>{}}
                 />
+                {props.iconBo?<span 
+                    onClick={() => { }}                        
+                    ><FontIcon aria-label="ChevronLeftSmall"
+                      iconName={props.iconBo} 
+                      style={{fontSize:'16px', height:'25px'}}
+                    />
+                    </span>:''}
+                </div>
                  : 
                 <div className="inputFielt--container-input">
                     <input          

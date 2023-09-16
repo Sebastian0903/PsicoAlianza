@@ -65,6 +65,8 @@
 .mg10-h{margin: 10px 0;}
 .mg20-h{margin: 20px 0;}
 
+.mrg-top3{margin-top: 30px;}
+
 .pg1-h{margin: 1rem 0;}
 .pg2-wrem{padding: 0 2rem;}
 .mg2-wrem{margin: 0 2rem;}
@@ -72,6 +74,25 @@
 .container--flex{
     display: flex;
     flex-wrap: wrap;
+}
+.ms-FocusZone{
+    padding: 0px;
+}
+.color-txt{
+    .ms-TooltipHost{
+        color: var(--color-primary);
+    }
+    .ms-Persona-secondaryText{
+        .ms-TooltipHost{
+            color: var(--color-neutral-dark-III);
+        }
+    }
+
+}
+.menu-perfil{
+    .ms-Button, .ms-FocusZone{
+        background: transparent;
+    }
 }
 
 .flex-fl{flex-flow: column;}
@@ -144,6 +165,7 @@
 .txt--pentanary{font-size: var(--font-size-pentanary);}
 .txt-weight{font-weight: bold;}
 .txt-4{font-weight: 400;}
+.txt-center{text-align: center;}
 
 
 
@@ -355,4 +377,21 @@
     z-index: -10;
     right: 100px;
     bottom: 0px;
+}
+
+.buton-efect{
+    padding: 10px;
+    transition: all 0.3s;
+    border-radius: 50%;
+    &:hover{
+        background: var(--color-neutral-base);
+        transition: all 0.3s;
+        i{color: white;}
+    }
+}
+
+@media only screen and (max-width : 900px) {
+    .padding-resp{
+        padding: 0px 14%;
+    }
 }

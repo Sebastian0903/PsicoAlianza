@@ -21,7 +21,6 @@ const ContainerLogin = (props) => {
   );
 
   const submitUser = () =>{
-    console.log('first')
     Cookies.set('user',user)
     navigate(`/inbox`);
   }

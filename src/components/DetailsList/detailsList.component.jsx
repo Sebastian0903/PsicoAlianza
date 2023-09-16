@@ -1,8 +1,8 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import { useId, useBoolean } from '@fluentui/react-hooks';
-import {buildColumns, DetailsHeader, DetailsList} from '@fluentui/react/lib/DetailsList';
+import {buildColumns, DetailsHeader, DetailsList, DetailsListLayoutMode} from '@fluentui/react/lib/DetailsList';
 import { ShimmeredDetailsList } from '@fluentui/react/lib/ShimmeredDetailsList';
-import { ActionButton, FontIcon, FontWeights, IconButton, MarqueeSelection, Modal } from '@fluentui/react';
+import { ActionButton, CommandBar, FontIcon, FontWeights, IconButton, MarqueeSelection, Modal } from '@fluentui/react';
 import { Selection } from '@fluentui/react/lib/Selection';
 import ModalFluent from '../modalFluent/ModalFluent';
 
@@ -26,6 +26,7 @@ const DetailsListPSA = ({
     layoutMode,
     itemsSelect,
     formConstants,
+    viewport,
     pagination = {
         currentPage: -1,
         pageSize: -1,
@@ -118,6 +119,36 @@ const DetailsListPSA = ({
                 <div className="details-list-pagination">
                     <div className="details-list-pagination__subitem">
                         {/* <p>{firstRegister} - {lastRegister} de {totalItems}</p> */}
+                        <CommandBar
+                            items={[
+                                {
+                                    key: 'newItem',
+                                    text: 'Mostrar de a',
+                                    cacheKey: 'myCacheKey', // changing this key will invalidate this item's cache
+                                    subMenuProps: {
+                                      items: [
+                                        {
+                                          key: 'emailMessage',
+                                          text: '10 resultados',
+                                          ['data-automation-id']: 'newEmailButton'
+                                        },
+                                        {
+                                          key: 'calendarEvent',
+                                          text: '30 resultados',
+                                        },
+                                        {
+                                          key: 'emailMessagez',
+                                          text: '50 resultados',
+                                        }
+                                      ],
+                                    },
+                                  }
+                            ]}
+                            ariaLabel="Inbox actions"
+                            primaryGroupAriaLabel="Email actions"
+                            farItemsGroupAriaLabel="More actions"
+                            className='menu-perfil'
+                        />
                     </div>
                     <div className="details-list-pagination__subitem">
                         <ul>
@@ -229,7 +260,7 @@ const DetailsListPSA = ({
             </div>
         </div>
 
-        <div className="pdg1-w w10">
+        <div className="pdg1-w">
         <ShimmeredDetailsList
             items={sortedItems}
             setKey={listKey}
@@ -240,9 +271,9 @@ const DetailsListPSA = ({
             compact={compact}
             selectionMode={selectionMode}
             enableShimmer={enableShimmer}
-            layoutMode={layoutMode == 0 ? 0 : 1 }
+            layoutMode={DetailsListLayoutMode.fixedColumns}
             className={className}
-            // {...viewport?{viewport:viewport}:{}}
+            // {...viewport?{viewport:1000}:{}}
             style={styles}
             onRenderDetailsFooter={_onRenderDetailsFooter}
         />
